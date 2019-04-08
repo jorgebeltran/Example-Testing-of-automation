@@ -14,8 +14,4 @@ public class StepsDefinitionPHPtravel {
         login = LoadPage.loginPage();
     }
 
-    @And("^set my credentials on 'Login' page$")
-    public void setMyCredentialsOnLoginPage() throws Throwable {
-        login.setCredentials();
-    }
 }

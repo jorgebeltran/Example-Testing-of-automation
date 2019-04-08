@@ -1,13 +1,13 @@
 package org.umssdiplo.automationv01.core.utils;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.umssdiplo.automationv01.core.customwebdriver.ManageDriver;
 
 import java.util.List;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class CommonEvents {
 
@@ -114,6 +114,32 @@ public class CommonEvents {
      */
     public static void pressEnterKey(WebElement webElement) {
         webElement.sendKeys(Keys.ENTER);
+    }
+
+    public static void waitForElementIsNotVisible(WebElement element){
+        WebDriverWait wait = new WebDriverWait(ManageDriver.getInstance().getWebDriver(), 10);
+        wait.until(ExpectedConditions.invisibilityOf(element));
+    }
+    public static void waitForElementIsVisible(WebElement element){
+        WebDriverWait wait = new WebDriverWait(ManageDriver.getInstance().getWebDriver(), 10);
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+    public static void aceptAlert() {
+        WebDriverWait wait = ManageDriver.getInstance().getWebDriverWait();
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+    }
+
+    public static String getInnerText(WebElement webElement) {
+        ManageDriver.getInstance().getWebDriverWait().until(ExpectedConditions.visibilityOf(webElement));
+        return webElement.getAttribute("innerText");
+    }
+
+    public static void setInputFieldWaitTexBox(WebElement webElement, String content) {
+        WebDriver driver = ManageDriver.getInstance().getWebDriver();
+        driver.manage().timeouts().setScriptTimeout(5, SECONDS);
+        webElement.clear();
+        webElement.sendKeys(content);
     }
 
 }
