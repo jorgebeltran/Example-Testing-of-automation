@@ -1,6 +1,10 @@
 # Login feature review the behavior in thie feature
+#Jorge Beltran Aguilar
 Feature: Login
 
-  Scenario: Home page is displayed once set credential in login page
-    Given 'PHP travel' page is loaded
-    And set my credentials on 'Login' page
+  Background: Home page is displayed once set credential in login page
+    Given  'courses ultimate qa' page is loaded
+    When    set my credentials on 'Login' page
+    And     sign out
+
+  Scenario: hello word

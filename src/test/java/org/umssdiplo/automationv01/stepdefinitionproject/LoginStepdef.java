@@ -1,19 +1,21 @@
 package org.umssdiplo.automationv01.stepdefinitionproject;
 
-import cucumber.api.java.en.Then;
+import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import org.umssdiplo.automationv01.core.managepage.Login.Login;
 
 public class LoginStepdef {
     Login loginPage= new Login();
 
-    @When("^Logueo en la aplicacion$")
-    public void logueoEnLaAplicacion(){
-        loginPage.login();
+    @When("^set my credentials on 'Login' page$")
+    public void setMyCredentialsOnLoginPage() throws Throwable {
+        loginPage.setCredentials();
     }
 
-    @Then("^Cierro sesion$")
-    public void cierroSesion() {
-        loginPage.cerrarSesion();
+    @And("^sign out$")
+    public void signOff() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        loginPage.signOff();
     }
 }

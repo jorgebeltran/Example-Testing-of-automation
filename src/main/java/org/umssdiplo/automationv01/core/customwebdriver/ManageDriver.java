@@ -1,5 +1,6 @@
 package org.umssdiplo.automationv01.core.customwebdriver;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.umssdiplo.automationv01.core.utils.BrowserType;
@@ -8,7 +9,7 @@ import org.umssdiplo.automationv01.core.utils.PropertyAccessor;
 import java.util.concurrent.TimeUnit;
 
 public class ManageDriver {
-    private static final String BASE_URL = "http://www.phptravels.net/admin";
+    private static final String BASE_URL = "https://courses.ultimateqa.com/users/sign_in";
     private static final int IMPLICIT_TIME_WAIT = PropertyAccessor.getInstance().getImplicitTimeWait();
     private static final int EXPLICIT_TIME_WAIT = PropertyAccessor.getInstance().getExplicitTimeWait();
     private static ManageDriver instance;
@@ -18,7 +19,8 @@ public class ManageDriver {
     private ManageDriver() {
         BrowserType driverType = BrowserType.valueOf(PropertyAccessor.getInstance().getBrowser());
         webDriver = DriverFactory.getManageDriver(driverType);
-        webDriver.manage().window().maximize();
+        webDriver.manage().window().setSize(new Dimension(1440, 900));
+        //webDriver.manage().window().maximize();
     }
 
     public static ManageDriver getInstance() {
@@ -37,6 +39,7 @@ public class ManageDriver {
     }
 
     public WebDriverWait getWebDriverWait() {
+        webDriverWait = new WebDriverWait(getInstance().getWebDriver(),IMPLICIT_TIME_WAIT);
         return webDriverWait;
     }
 

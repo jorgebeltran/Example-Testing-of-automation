@@ -72,7 +72,7 @@ def generateReport(String pathCucumber, String pathReport){
     jsonFiles.add(pathCucumber)
 
     String buildNumber = "1"
-    String projectName = "UMSS Diplomado"
+    String projectName = "Automation"
     boolean runWithJenkins = false
     boolean parallelTesting = false
 
